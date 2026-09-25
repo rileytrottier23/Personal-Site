@@ -21,5 +21,5 @@ npm run dev   # builds, then serves on http://localhost:3000
 
 - `build.mjs` turns `posts/*.md` into `dist/` (front page plus one page per post).
 - `server.mjs` serves `dist/` with no dependencies.
-- `public/` holds static files. Images stored as `.b64` text are decoded at build time.
+- `public/` holds static files. Images stored as base64 text (`name.jpg.b64`, or parts `name.jpg.b64.00`, `.01`, ...) are decoded at build time.
 - Railway runs `npm run build`, then `npm start`.

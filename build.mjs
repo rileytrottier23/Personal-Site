@@ -20,14 +20,20 @@ const dist = path.join(root, 'dist');
 fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(dist, { recursive: true });
 
-// Static assets. Binary files are stored as .b64 text so they can be committed via text-only tools.
-for (const f of fs.readdirSync(path.join(root, 'public'))) {
+// Static assets. Binary files can be stored as base64 text so they can be committed via text-only tools:
+// either one file (name.jpg.b64) or numbered parts (name.jpg.b64.00, .01, ...) joined in order.
+const b64 = {};
+for (const f of fs.readdirSync(path.join(root, 'public')).sort()) {
   const src = path.join(root, 'public', f);
-  if (f.endsWith('.b64')) {
-    fs.writeFileSync(path.join(dist, f.slice(0, -4)), Buffer.from(fs.readFileSync(src, 'utf8'), 'base64'));
+  const m = f.match(/^(.+)\.b64(\.\d+)?$/);
+  if (m) {
+    b64[m[1]] = (b64[m[1]] || '') + fs.readFileSync(src, 'utf8');
   } else {
     fs.copyFileSync(src, path.join(dist, f));
   }
+}
+for (const [name, text] of Object.entries(b64)) {
+  fs.writeFileSync(path.join(dist, name), Buffer.from(text.replace(/\s+/g, ''), 'base64'));
 }
 fs.copyFileSync(path.join(root, 'src', 'styles.css'), path.join(dist, 'styles.css'));
 
