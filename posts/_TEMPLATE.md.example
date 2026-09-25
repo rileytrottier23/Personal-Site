@@ -1,0 +1,13 @@
+---
+title: Your headline here
+date: 2026-09-25
+dek: One or two sentences that sit under the headline.
+category: Agent governance
+draft: false
+---
+
+First paragraph. It gets the drop cap.
+
+## A subheading
+
+More writing. Standard Markdown works: **bold**, *italics*, [links](https://example.com), lists, quotes and code.
