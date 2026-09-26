@@ -24,9 +24,6 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 
 .intro{padding:36px 0 32px;border-bottom:1px solid var(--rule)}
 .intro p{font-size:21px;line-height:1.5;max-width:60ch}
-.intro .intro-links{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:16px;font-family:'Inter',system-ui,sans-serif;font-size:15px;font-weight:600}
-.intro-links a{display:inline-flex;align-items:center;min-height:44px;color:var(--blue);text-decoration:none}
-.intro-links a:hover{text-decoration:underline;text-underline-offset:4px}
 
 .lead{padding:48px 0 40px;border-bottom:1px solid var(--rule)}
 .kicker{font-family:'Inter',system-ui,sans-serif;font-size:12px;color:var(--blue);font-weight:600;margin-bottom:14px;letter-spacing:.02em}
@@ -38,7 +35,7 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .empty{font-size:19px;color:var(--ink-soft);line-height:1.6}
 
 .index{padding:44px 0}
-.index h2,.about h2{font-family:'Inter',system-ui,sans-serif;font-size:12px;color:var(--ink-soft);letter-spacing:.02em;margin-bottom:24px;font-weight:600}
+.index h2{font-family:'Inter',system-ui,sans-serif;font-size:12px;color:var(--ink-soft);letter-spacing:.02em;margin-bottom:24px;font-weight:600}
 .entry{display:block;padding:22px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
 .entry:first-of-type{padding-top:0}
 .entry .cat{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--blue);font-weight:600;margin-bottom:6px}
@@ -47,9 +44,11 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .entry p{font-size:15px;color:var(--ink-soft);line-height:1.55;max-width:60ch}
 .entry .foot{font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--ink-soft);margin-top:10px}
 
-.about{padding:44px 0 56px;border-bottom:1px solid var(--rule)}
-.about p{font-size:16px;line-height:1.7;max-width:56ch;margin-bottom:14px}
+.about{padding:48px 0 56px}
+.about h2{font-size:30px;font-weight:600;margin-bottom:18px;letter-spacing:-0.01em}
+.about p{font-size:18px;line-height:1.7;max-width:62ch;margin-bottom:16px}
 .about p:last-child{margin-bottom:0}
+.index+.about{padding-top:8px}
 
 .article{padding:36px 0 56px;border-bottom:1px solid var(--rule)}
 .article p,.article li{font-size:18px;line-height:1.7;max-width:66ch}

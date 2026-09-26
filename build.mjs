@@ -98,17 +98,16 @@ ${body}
 
 const about = `
   <section class="about" id="about">
-    <div>
-      <h2>ABOUT</h2>
-      <p>Based in Victoria, BC. Outside of work I'm learning French, playing more chess than my rating shows, and challenging myself on the squash court and golf course. Proud new father as of 2026.</p>
-    </div>
+    <h2>About</h2>
+    <p>I've spent about eight years in product management, across payments, health tech, public transit and now enterprise finance software. I have an MBA from Ivey and a degree in history and professional writing from the University of Victoria.</p>
+    <p>I'm based in Victoria, BC. Outside of work I'm learning French, playing more chess than my rating shows, and challenging myself on the squash court and golf course. I've competed and coached as a multi-sport national athlete, and I've taken on leadership roles with non-profits.</p>
+    <p>Proud new father as of 2026.</p>
   </section>`;
 
 // Home page
 const intro = `
   <section class="intro">
     <p>I'm a Senior Product Manager at Workday, working on AI for the contract, billing and revenue side of Workday Financials. On my own time I build AI apps and tools to learn how these products work in practice.</p>
-    <p class="intro-links"><a href="work/">See my work →</a><a href="projects/">See my projects →</a></p>
   </section>`;
 const [latest, ...rest] = posts;
 const leadHtml = latest
