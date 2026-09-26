@@ -81,7 +81,7 @@ const page = ({ title, description, body, prefix = '' }) => `<!DOCTYPE html>
   </header>
   <nav class="meta-row" aria-label="Site">
     <span>${esc(SITE.location)}</span>
-    <span><a href="${prefix}#writing">Writing</a><a href="${prefix}#about">About</a><a href="${SITE.github}">GitHub</a></span>
+    <span><a href="${prefix}#writing">Writing</a><a href="${prefix}work/">Work</a><a href="${prefix}projects/">Projects</a><a href="${prefix}#about">About</a><a href="${SITE.github}">GitHub</a></span>
   </nav>
 ${body}
   <footer class="colophon">
@@ -162,4 +162,31 @@ ${p.html}
   }));
 }
 
-console.log(`Built ${posts.length} post(s) into dist/`);
+// Standalone pages: pages/<slug>.md -> dist/<slug>/index.html
+// Frontmatter: title, kicker, dek, description. Markdown and raw HTML are both allowed.
+const pagesDir = path.join(root, 'pages');
+const pageNames = fs.existsSync(pagesDir) ? fs.readdirSync(pagesDir).filter((f) => f.endsWith('.md')) : [];
+for (const f of pageNames) {
+  const { data, content } = matter(fs.readFileSync(path.join(pagesDir, f), 'utf8'));
+  const slug = f.replace(/\.md$/, '');
+  const dir = path.join(dist, slug);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'index.html'), page({
+    title: `${data.title} — ${SITE.name}`,
+    description: data.description || data.dek || data.title,
+    prefix: '../',
+    body: `
+  <article>
+    <header class="lead">
+      ${data.kicker ? `<div class="kicker">${esc(String(data.kicker).toUpperCase())}</div>` : ''}
+      <h1>${esc(data.title)}</h1>
+      ${data.dek ? `<p class="dek">${esc(data.dek)}</p>` : ''}
+    </header>
+    <div class="article page">
+${marked.parse(content)}
+    </div>
+  </article>`,
+  }));
+}
+
+console.log(`Built ${posts.length} post(s) and ${pageNames.length} page(s) into dist/`);
