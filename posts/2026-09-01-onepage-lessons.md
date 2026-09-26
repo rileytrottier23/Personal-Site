@@ -1,11 +1,11 @@
 ---
 title: What I learned building OnePage, my first AI project
 date: 2026-09-01
-dek: I'm a product manager, not an engineer. OnePage was how I found out whether I could build and ship something myself.
+dek: I'm a Senior Product Manager, not an engineer. OnePage was how I found out whether I could build and ship something myself.
 category: Building
 ---
 
-OnePage was the first thing I ever built with AI. I'm a product manager, not an engineer, and the idea (a simple AI-powered task management app) was really an excuse to find out whether I could turn "I understand agentic AI at a product level" into "I have actually shipped something." Replit made that possible in a way that would have been out of reach for me otherwise.
+OnePage was the first thing I ever built with AI. I'm a Senior Product Manager, not an engineer, and the idea (a simple AI-powered task management app) was really an excuse to find out whether I could turn "I understand agentic AI at a product level" into "I have actually shipped something." Replit made that possible in a way that would have been out of reach for me otherwise.
 
 I didn't know a lot going in. I remember how much I had to look up that a more experienced developer would have taken for granted: how a frontend talks to a backend, what a database migration even is, why my app worked perfectly in one session and broke mysteriously in the next. None of it was exotic. It was the ordinary texture of building software, and I was running into most of it for the first time.
 
