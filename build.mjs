@@ -54,7 +54,7 @@ const posts = fs.readdirSync(postsDir)
   .filter((p) => !p.draft)
   .sort((a, b) => b.date.localeCompare(a.date));
 
-const page = ({ title, description, body, prefix = '' }) => `<!DOCTYPE html>
+const page = ({ title, description, body, prefix = '', current = '' }) => `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -79,9 +79,9 @@ const page = ({ title, description, body, prefix = '' }) => `<!DOCTYPE html>
       <div class="tagline">${esc(SITE.tagline)}</div>
     </div>
   </header>
-  <nav class="meta-row" aria-label="Site">
-    <span>${esc(SITE.location)}</span>
-    <span><a href="${prefix}#writing">Writing</a><a href="${prefix}work/">Work</a><a href="${prefix}projects/">Projects</a><a href="${prefix}#about">About</a><a href="${SITE.github}">GitHub</a></span>
+  <nav class="site-nav" aria-label="Site">
+    ${[['writing', 'Writing', `${prefix}#writing`], ['work', 'Work', `${prefix}work/`], ['projects', 'Projects', `${prefix}projects/`], ['about', 'About', `${prefix}#about`], ['github', 'GitHub', SITE.github]]
+      .map(([key, label, href]) => `<a href="${href}"${key === current ? ' aria-current="page"' : ''}>${label}</a>`).join('')}
   </nav>
 ${body}
   <footer class="colophon">
@@ -95,15 +95,18 @@ ${body}
 
 const about = `
   <section class="about" id="about">
-    <img src="riley.jpg" alt="">
     <div>
       <h2>ABOUT</h2>
-      <p>I'm a Senior Product Manager working on agentic AI for enterprises.</p>
       <p>Based in Victoria, BC. Outside of work I'm learning French, playing more chess than my rating shows, and challenging myself on the squash court and golf course. Proud new father as of 2026.</p>
     </div>
   </section>`;
 
 // Home page
+const intro = `
+  <section class="intro">
+    <p>I'm a Senior Product Manager at Workday, working on AI for the contract, billing and revenue side of Workday Financials. On my own time I build AI apps and tools to learn how these products work in practice.</p>
+    <p class="intro-links"><a href="work/">See my work →</a><a href="projects/">See my projects →</a></p>
+  </section>`;
 const [latest, ...rest] = posts;
 const leadHtml = latest
   ? `
@@ -135,7 +138,8 @@ const indexHtml = rest.length
 fs.writeFileSync(path.join(dist, 'index.html'), page({
   title: `${SITE.name} — ${SITE.role}`,
   description: 'Dispatches on product management for agentic AI, by Riley Trottier.',
-  body: leadHtml + indexHtml + about,
+  body: intro + leadHtml + indexHtml + about,
+  current: 'writing',
 }));
 
 // Post pages
@@ -146,6 +150,7 @@ for (const p of posts) {
     title: `${p.title} — ${SITE.name}`,
     description: p.dek || p.title,
     prefix: '../../',
+    current: 'writing',
     body: `
   <article>
     <header class="lead">
@@ -175,6 +180,7 @@ for (const f of pageNames) {
     title: `${data.title} — ${SITE.name}`,
     description: data.description || data.dek || data.title,
     prefix: '../',
+    current: slug,
     body: `
   <article>
     <header class="lead">
