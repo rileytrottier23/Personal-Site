@@ -1,6 +1,7 @@
 // Builds the static site into dist/.
 // Posts live in posts/*.md with frontmatter: title, date (YYYY-MM-DD), dek, category, draft (optional).
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import path from 'node:path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
@@ -36,6 +37,8 @@ for (const [name, text] of Object.entries(b64)) {
   fs.writeFileSync(path.join(dist, name), Buffer.from(text.replace(/\s+/g, ''), 'base64'));
 }
 fs.copyFileSync(path.join(root, 'src', 'styles.css'), path.join(dist, 'styles.css'));
+// Version the stylesheet URL so browsers pick up CSS changes right away instead of using a cached copy.
+const cssVersion = crypto.createHash('sha1').update(fs.readFileSync(path.join(dist, 'styles.css'))).digest('hex').slice(0, 10);
 
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const fmtDate = (d) => new Date(d + 'T12:00:00Z').toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -68,7 +71,7 @@ const page = ({ title, description, body, prefix = '', current = '' }) => `<!DOC
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${prefix}styles.css">
+<link rel="stylesheet" href="${prefix}styles.css?v=${cssVersion}">
 </head>
 <body>
 <div class="wrap">
