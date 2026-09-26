@@ -1,5 +1,5 @@
 // Builds the static site into dist/.
-// Posts live in posts/*.md with frontmatter: title, date (YYYY-MM-DD), dek, category, draft (optional).
+// Posts live in posts/*.md with frontmatter: title, date (YYYY-MM-DD), dek, category, app_published (optional, e.g. "May 2025"), draft (optional).
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import path from 'node:path';
@@ -159,7 +159,7 @@ for (const p of posts) {
       ${p.category ? `<div class="kicker">${esc(String(p.category).toUpperCase())}</div>` : ''}
       <h1>${esc(p.title)}</h1>
       ${p.dek ? `<p class="dek">${esc(p.dek)}</p>` : ''}
-      <div class="byline">By ${esc(SITE.name)} · ${fmtDate(p.date)} · ${p.minutes} min read</div>
+      <div class="byline">By ${esc(SITE.name)} · ${fmtDate(p.date)} · ${p.minutes} min read${p.app_published ? ` · App first published ${esc(p.app_published)}` : ''}</div>
     </header>
     <div class="article">
 ${p.html}
