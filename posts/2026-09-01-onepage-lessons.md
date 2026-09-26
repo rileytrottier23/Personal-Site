@@ -5,7 +5,7 @@ dek: OnePage was the first app I built myself. Here's what I got wrong, what I f
 category: Building
 ---
 
-OnePage was my first real software project. Before it, I had written specs and worked with engineering teams, but I had never built and shipped an app on my own. A lot of it was trial and error. I broke things, fixed them, and broke them again in new ways. This post covers the lessons that stuck.
+OnePage was my first real software project. I had spent years as a product manager, working with engineering teams on SaaS, payments and health-tech products, but I had never built an app myself. A lot of it was trial and error. I broke things, fixed them, and broke them again in new ways. This post covers the lessons that stuck.
 
 ## What OnePage is
 
