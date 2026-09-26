@@ -9,14 +9,14 @@ description: "Riley Trottier's personal AI projects: apps, an MCP server, agent 
   <div class="cat">APP · LIVE · 2025</div>
   <h3>ReflectAI</h3>
   <p>A journaling app that uses AI to turn your entries into monthly well-being reports. It has user accounts and is live on the web.</p>
-  <p class="links"><a href="https://reflectai.net">reflectai.net</a><a href="https://github.com/rileytrottier23/ReflectAI">Code</a></p>
+  <p class="links"><a href="https://reflectai.net">Live app</a><a href="../posts/building-reflectai/">Read the write-up</a><a href="https://github.com/rileytrottier23/ReflectAI">Code</a></p>
 </div>
 
 <div class="project">
   <div class="cat">APP · LIVE · 2025</div>
   <h3>OnePage</h3>
   <p>A task manager where everything happens on one screen, with AI-written monthly productivity reports. My first AI project, and the one I learned the most from.</p>
-  <p class="links"><a href="../posts/onepage-lessons/">Read the write-up</a><a href="https://github.com/rileytrottier23/OnePage">Code</a></p>
+  <p class="links"><a href="https://onepage-production-a1c7.up.railway.app">Live app</a><a href="../posts/onepage-lessons/">Read the write-up</a><a href="https://github.com/rileytrottier23/OnePage">Code</a></p>
 </div>
 
 <div class="project">
@@ -34,10 +34,10 @@ description: "Riley Trottier's personal AI projects: apps, an MCP server, agent 
 </div>
 
 <div class="project">
-  <div class="cat">AI EVALUATION · OPEN SOURCE · 2026</div>
+  <div class="cat">AI EVALUATION · LIVE · 2026</div>
   <h3>Product Evaluator</h3>
   <p>A tool that turns a product requirements document into a structured test suite for an AI agent, so the requirements and the tests stay connected.</p>
-  <p class="links"><a href="https://github.com/rileytrottier23/product-evaluator">Code</a></p>
+  <p class="links"><a href="https://product-evaluator-production.up.railway.app">Live app</a><a href="https://github.com/rileytrottier23/product-evaluator">Code</a></p>
 </div>
 
 <div class="project">
@@ -51,5 +51,5 @@ description: "Riley Trottier's personal AI projects: apps, an MCP server, agent 
   <div class="cat">WEBSITE · LIVE · 2026</div>
   <h3>This site</h3>
   <p>A small static site: posts are written in Markdown, turned into plain HTML and hosted on Railway.</p>
-  <p class="links"><a href="https://github.com/rileytrottier23/Personal-Site">Code</a></p>
+  <p class="links"><a href="../">Live site</a><a href="https://github.com/rileytrottier23/Personal-Site">Code</a></p>
 </div>
