@@ -27,13 +27,6 @@ description: "Riley Trottier's personal AI projects: apps, an MCP server, agent 
 </div>
 
 <div class="project">
-  <div class="cat">AI EVALUATION · OPEN SOURCE · 2026</div>
-  <h3>Agent Eval Harness</h3>
-  <p>An offline test harness for AI agents. It produces scorecards for task success, cost, speed and whether the agent stayed within its guardrails, and lets you drill into individual cases and compare runs.</p>
-  <p class="links"><a href="https://github.com/rileytrottier23/agent-eval-harness">Code</a></p>
-</div>
-
-<div class="project">
   <div class="cat">AI EVALUATION · LIVE · 2026</div>
   <h3>Product Evaluator</h3>
   <p>A tool that turns a product requirements document into a structured test suite for an AI agent, so the requirements and the tests stay connected.</p>
@@ -45,11 +38,4 @@ description: "Riley Trottier's personal AI projects: apps, an MCP server, agent 
   <h3>Skill libraries</h3>
   <p>Reusable instructions that teach Claude how I work: writing specs and PRDs, stakeholder decks, competitive research, decision reviews and more. They're split into three libraries by topic, with one hub to install them from.</p>
   <p class="links"><a href="https://github.com/rileytrottier23/Riley-PM-Skills">Product</a><a href="https://github.com/rileytrottier23/Riley-Coding-Skills">Coding</a><a href="https://github.com/rileytrottier23/riley-thinking-skills">Thinking</a><a href="https://github.com/rileytrottier23/Riley-Claude-Skills">Hub</a></p>
-</div>
-
-<div class="project">
-  <div class="cat">WEBSITE · LIVE · 2026</div>
-  <h3>This site</h3>
-  <p>A small static site: posts are written in Markdown, turned into plain HTML and hosted on Railway.</p>
-  <p class="links"><a href="../">Live site</a><a href="https://github.com/rileytrottier23/Personal-Site">Code</a></p>
 </div>

@@ -8,7 +8,7 @@ import { marked } from 'marked';
 
 const SITE = {
   name: 'Riley Trottier',
-  tagline: 'Senior PM — dispatches on product management for agentic AI',
+  tagline: 'Senior Product Manager - building with artificial intelligence',
   role: 'Senior Product Manager, Agentic AI',
   location: 'Victoria, BC',
   email: 'riley.a.trottier@gmail.com',
@@ -99,15 +99,15 @@ ${body}
 const about = `
   <section class="about" id="about">
     <h2>About</h2>
-    <p>I've spent about eight years in product management, across payments, health tech, public transit and now enterprise finance software. I have an MBA from Ivey and a degree in history and professional writing from the University of Victoria.</p>
-    <p>I'm based in Victoria, BC. Outside of work I'm learning French, playing more chess than my rating shows, and challenging myself on the squash court and golf course. I've competed and coached as a multi-sport national athlete, and I've taken on leadership roles with non-profits.</p>
+    <p>I've spent about eight years in product management, across payments, health tech, public transit and now enterprise finance software. I have an MBA from the Richard Ivey School of Business and a degree in history and professional writing from the University of Victoria.</p>
+    <p>I'm based in Victoria, BC. Outside of work I'm learning French, playing more chess than my rating shows, and challenging myself on the squash court and golf course. I've competed nationally in field hockey and badminton, and love to play sports in general. I've led volunteer organizations and sat on numerous boards for non-profits and private entities, and am passionate about helping my community.</p>
     <p>Proud new father as of 2026.</p>
   </section>`;
 
 // Home page
 const intro = `
   <section class="intro">
-    <p>I'm a Senior Product Manager at Workday, working on AI for the contract, billing and revenue side of Workday Financials. On my own time I build AI apps and tools to learn how these products work in practice.</p>
+    <p>I'm a Senior Product Manager at Workday, building an agent for contract management and automated accounting. On my own time I build AI apps and tools to learn how these products work in practice. My experience covers a broad range of industries including finance, transportation, government and healthcare.</p>
   </section>`;
 const [latest, ...rest] = posts;
 const leadHtml = latest
