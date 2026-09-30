@@ -16,6 +16,8 @@ I also had to get comfortable not knowing things. There's a specific discomfort 
 
 [OnePage is still running today](https://onepage-production-a1c7.up.railway.app). It has since moved off Replit onto [Railway](https://railway.com), alongside my other projects, as I've kept building. It's not a polished product, and I don't think it needs to be. To me it's the first time I closed the loop between having opinions about AI product work and actually doing it. Every project since has been easier because of what OnePage forced me to learn the hard way.
 
+<figure><img src="../../onepage-home.webp" alt="OnePage home page with the headline The simplest way to manage your tasks and three features: everything in one view, repeating tasks and smart archiving" width="1000" height="449" loading="lazy"><figcaption>The OnePage home page as it runs today on Railway.</figcaption></figure>
+
 If you're a PM curious about building something yourself, start smaller than you think you need to, and expect to feel like a beginner for longer than feels comfortable. It's worth it.
 
 ---
