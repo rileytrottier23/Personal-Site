@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.join(path.dirname(new URL(import.meta.url).pathname), 'dist');
-const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.png': 'image/png', '.xml': 'application/xml', '.txt': 'text/plain' };
+const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.xml': 'application/xml', '.txt': 'text/plain' };
 const port = process.env.PORT || 3000;
 
 http.createServer((req, res) => {

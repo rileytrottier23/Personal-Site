@@ -64,6 +64,9 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .article pre{background:#E3E0D6;padding:16px;border-radius:4px;overflow-x:auto;margin:0 0 20px}
 .article pre code{background:none;padding:0}
 .article img{max-width:100%;height:auto}
+.article figure{margin:28px 0 32px}
+.article figure img{display:block;width:100%;border:1px solid var(--rule)}
+.article figcaption{font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--ink-soft);margin-top:10px;line-height:1.5}
 .article hr{border:0;border-top:1px solid var(--rule);margin:32px 0}
 .article.page>p:first-of-type::first-letter{font-size:inherit;float:none;line-height:inherit;padding:0;font-weight:inherit}
 .article h2:first-child{margin-top:0}
