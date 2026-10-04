@@ -9,7 +9,9 @@ import { marked } from 'marked';
 const SITE = {
   name: 'Riley Trottier',
   tagline: 'Senior Product Manager - building with artificial intelligence',
-  role: 'Senior Product Manager, Agentic AI',
+  role: 'Senior Product Manager',
+  url: 'https://rileytrottier.com',
+  employer: 'Workday',
   location: 'Victoria, BC',
   email: 'riley.a.trottier@gmail.com',
   github: 'https://github.com/rileytrottier23',
@@ -57,7 +59,22 @@ const posts = fs.readdirSync(postsDir)
   .filter((p) => !p.draft)
   .sort((a, b) => b.date.localeCompare(a.date));
 
-const page = ({ title, description, body, prefix = '', current = '' }) => `<!DOCTYPE html>
+// Structured data that tells search engines who this site is about.
+const personLd = {
+  '@type': 'Person',
+  '@id': `${SITE.url}/#riley`,
+  name: SITE.name,
+  url: `${SITE.url}/`,
+  image: `${SITE.url}/riley.jpg`,
+  jobTitle: SITE.role,
+  worksFor: { '@type': 'Organization', name: SITE.employer },
+  address: { '@type': 'PostalAddress', addressLocality: 'Victoria', addressRegion: 'BC', addressCountry: 'CA' },
+  sameAs: [SITE.linkedin, SITE.github],
+};
+const ldScript = (obj) => `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', ...obj }).replace(/</g, '\\u003c')}</script>`;
+const urls = [];
+
+const page = ({ title, description, body, prefix = '', current = '', urlPath = '/', type = 'website', ld = '', lastmod = '' }) => { urls.push({ urlPath, lastmod }); return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -66,7 +83,14 @@ const page = ({ title, description, body, prefix = '', current = '' }) => `<!DOC
 <meta name="description" content="${esc(description)}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
-<meta property="og:type" content="website">
+<meta name="author" content="${esc(SITE.name)}">
+<link rel="canonical" href="${SITE.url}${urlPath}">
+<meta property="og:type" content="${type}">
+<meta property="og:url" content="${SITE.url}${urlPath}">
+<meta property="og:site_name" content="${esc(SITE.name)}">
+<meta property="og:image" content="${SITE.url}/riley.jpg">
+<meta name="twitter:card" content="summary">
+${ld}
 <link rel="icon" href="${prefix}favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,7 +118,7 @@ ${body}
 </div>
 </body>
 </html>
-`;
+`; };
 
 const about = `
   <section class="about" id="about">
@@ -139,7 +163,8 @@ const indexHtml = rest.length
 
 fs.writeFileSync(path.join(dist, 'index.html'), page({
   title: `${SITE.name} — ${SITE.role}`,
-  description: 'Dispatches on product management for agentic AI, by Riley Trottier.',
+  description: 'Riley Trottier is a Senior Product Manager at Workday, based in Victoria, BC. Writing on product management and building with artificial intelligence.',
+  ld: ldScript({ '@graph': [personLd, { '@type': 'WebSite', '@id': `${SITE.url}/#site`, url: `${SITE.url}/`, name: SITE.name, author: { '@id': personLd['@id'] } }] }),
   body: intro + leadHtml + indexHtml + about,
   current: 'writing',
 }));
@@ -153,6 +178,10 @@ for (const p of posts) {
     description: p.dek || p.title,
     prefix: '../../',
     current: 'writing',
+    urlPath: `/posts/${p.slug}/`,
+    type: 'article',
+    lastmod: p.date,
+    ld: ldScript({ '@type': 'BlogPosting', headline: p.title, description: p.dek || p.title, datePublished: p.date, url: `${SITE.url}/posts/${p.slug}/`, mainEntityOfPage: `${SITE.url}/posts/${p.slug}/`, image: `${SITE.url}/riley.jpg`, author: personLd }),
     body: `
   <article>
     <header class="lead">
@@ -183,6 +212,8 @@ for (const f of pageNames) {
     description: data.description || data.dek || data.title,
     prefix: '../',
     current: slug,
+    urlPath: `/${slug}/`,
+    ld: ldScript(personLd),
     body: `
   <article>
     <header class="lead">
@@ -196,5 +227,13 @@ ${marked.parse(content)}
   </article>`,
   }));
 }
+
+// Sitemap and robots.txt so search engines can find every page.
+fs.writeFileSync(path.join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map((u) => `  <url><loc>${SITE.url}${u.urlPath}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ''}</url>`).join('\n')}
+</urlset>
+`);
+fs.writeFileSync(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
 
 console.log(`Built ${posts.length} post(s) and ${pageNames.length} page(s) into dist/`);

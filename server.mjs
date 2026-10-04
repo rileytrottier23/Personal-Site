@@ -8,6 +8,12 @@ const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=
 const port = process.env.PORT || 3000;
 
 http.createServer((req, res) => {
+  // Send the old Railway address and www to the main domain so search engines see one site.
+  const host = String(req.headers.host || '').toLowerCase().split(':')[0];
+  if (host.endsWith('.up.railway.app') || host === 'www.rileytrottier.com') {
+    res.writeHead(301, { Location: 'https://rileytrottier.com' + req.url }).end();
+    return;
+  }
   let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
   let file = path.normalize(path.join(root, p));
   if (!file.startsWith(root)) { res.writeHead(403).end(); return; }
