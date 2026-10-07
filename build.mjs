@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 import path from 'node:path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
+import { ogImage } from './lib/og.mjs';
 
 const SITE = {
   name: 'Riley Trottier',
@@ -74,7 +75,7 @@ const personLd = {
 const ldScript = (obj) => `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', ...obj }).replace(/</g, '\\u003c')}</script>`;
 const urls = [];
 
-const page = ({ title, description, body, prefix = '', current = '', urlPath = '/', type = 'website', ld = '', lastmod = '' }) => { urls.push({ urlPath, lastmod }); return `<!DOCTYPE html>
+const page = ({ title, description, body, prefix = '', current = '', urlPath = '/', type = 'website', ld = '', lastmod = '', image = 'og/site.png', progress = false }) => { urls.push({ urlPath, lastmod }); return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -88,8 +89,11 @@ const page = ({ title, description, body, prefix = '', current = '', urlPath = '
 <meta property="og:type" content="${type}">
 <meta property="og:url" content="${SITE.url}${urlPath}">
 <meta property="og:site_name" content="${esc(SITE.name)}">
-<meta property="og:image" content="${SITE.url}/riley.jpg">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="${SITE.url}/${image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="${esc(SITE.name)}" href="${SITE.url}/feed.xml">
 ${ld}
 <link rel="icon" href="${prefix}favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,6 +102,7 @@ ${ld}
 <link rel="stylesheet" href="${prefix}styles.css?v=${cssVersion}">
 </head>
 <body>
+${progress ? '<div class="progress" aria-hidden="true"></div>' : ''}
 <div class="wrap">
   <header class="masthead">
     <img src="${prefix}riley.jpg" alt="Riley Trottier">
@@ -107,13 +112,14 @@ ${ld}
     </div>
   </header>
   <nav class="site-nav" aria-label="Site">
-    ${[['writing', 'Writing', `${prefix}#writing`], ['work', 'Work', `${prefix}work/`], ['projects', 'Projects', `${prefix}projects/`], ['about', 'About', `${prefix}#about`], ['github', 'GitHub', SITE.github]]
+    ${[['writing', 'Writing', `${prefix}#writing`], ['work', 'Work', `${prefix}work/`], ['projects', 'Projects', `${prefix}projects/`], ['about', 'About', `${prefix}about/`], ['github', 'GitHub', SITE.github]]
       .map(([key, label, href]) => `<a href="${href}"${key === current ? ' aria-current="page"' : ''}>${label}</a>`).join('')}
   </nav>
 ${body}
   <footer class="colophon">
     Published irregularly from ${esc(SITE.location)}.<br>
-    Get in touch: <a href="mailto:${SITE.email}">${SITE.email}</a> — <a href="${SITE.github}">GitHub</a> — <a href="${SITE.linkedin}">LinkedIn</a>
+    Get in touch: <a href="mailto:${SITE.email}">${SITE.email}</a> — <a href="${SITE.github}">GitHub</a> — <a href="${SITE.linkedin}">LinkedIn</a><br>
+    <a href="${prefix}colophon/">How this site is built</a> — <a href="${prefix}feed.xml">RSS</a>
   </footer>
 </div>
 </body>
@@ -123,10 +129,17 @@ ${body}
 const about = `
   <section class="about" id="about">
     <h2>About</h2>
-    <p>I've spent about eight years in product management, across payments, health tech, public transit and now enterprise finance software. I have an MBA from the Richard Ivey School of Business and a degree in history and professional writing from the University of Victoria.</p>
-    <p>I'm based in Victoria, BC. Outside of work I'm learning French, playing more chess than my rating shows, and challenging myself on the squash court and golf course. I've competed nationally in field hockey and badminton, and love to play sports in general. I've led volunteer organizations and sat on numerous boards for non-profits and private entities, and am passionate about helping my community.</p>
-    <p>Proud new father as of 2026.</p>
+    <p>I've spent about eight years in product management, across payments, health tech, public transit and now enterprise finance software. I'm based in Victoria, BC, where I'm learning French and playing more chess than my rating shows. Proud new father as of 2026.</p>
+    <p>I'm always glad to talk about product management and building with AI. <a href="about/">More about me</a> or <a href="mailto:${SITE.email}">send me an email</a>.</p>
   </section>`;
+
+// A small strip on the front page that shows my latest public GitHub activity. Filled in by site.js; hidden if GitHub can't be reached.
+const nowStrip = `
+  <aside class="now" id="now" hidden>
+    <span class="now-label">NOW BUILDING</span>
+    <span id="now-text"></span>
+  </aside>
+  <script src="site.js" defer></script>`;
 
 // Home page
 const intro = `
@@ -165,7 +178,7 @@ fs.writeFileSync(path.join(dist, 'index.html'), page({
   title: `${SITE.name} — ${SITE.role}`,
   description: 'Riley Trottier is a Senior Product Manager at Workday, based in Victoria, BC. Writing on product management and building with artificial intelligence.',
   ld: ldScript({ '@graph': [personLd, { '@type': 'WebSite', '@id': `${SITE.url}/#site`, url: `${SITE.url}/`, name: SITE.name, author: { '@id': personLd['@id'] } }] }),
-  body: intro + leadHtml + indexHtml + about,
+  body: intro + nowStrip + leadHtml + indexHtml + about,
   current: 'writing',
 }));
 
@@ -181,7 +194,9 @@ for (const p of posts) {
     urlPath: `/posts/${p.slug}/`,
     type: 'article',
     lastmod: p.date,
-    ld: ldScript({ '@type': 'BlogPosting', headline: p.title, description: p.dek || p.title, datePublished: p.date, url: `${SITE.url}/posts/${p.slug}/`, mainEntityOfPage: `${SITE.url}/posts/${p.slug}/`, image: `${SITE.url}/riley.jpg`, author: personLd }),
+    image: `og/${p.slug}.png`,
+    progress: true,
+    ld: ldScript({ '@type': 'BlogPosting', headline: p.title, description: p.dek || p.title, datePublished: p.date, url: `${SITE.url}/posts/${p.slug}/`, mainEntityOfPage: `${SITE.url}/posts/${p.slug}/`, image: `${SITE.url}/og/${p.slug}.png`, author: personLd }),
     body: `
   <article>
     <header class="lead">
@@ -192,9 +207,18 @@ for (const p of posts) {
     </header>
     <div class="article">
 ${p.html}
-      <a class="back" href="../../">← All dispatches</a>
     </div>
-  </article>`,
+  </article>
+  <section class="index more">
+    <h2>MORE DISPATCHES</h2>
+    ${posts.filter((o) => o.slug !== p.slug).slice(0, 3).map((o) => `<a class="entry" href="../${o.slug}/">
+      ${o.category ? `<div class="cat">${esc(String(o.category).toUpperCase())}</div>` : ''}
+      <h3>${esc(o.title)}</h3>
+      ${o.dek ? `<p>${esc(o.dek)}</p>` : ''}
+      <div class="foot">${monthYear(o.date)} · ${o.minutes} min read</div>
+    </a>`).join('\n    ')}
+    <a class="back" href="../../">← All dispatches</a>
+  </section>`,
   }));
 }
 
@@ -227,6 +251,37 @@ ${marked.parse(content)}
   </article>`,
   }));
 }
+
+// Share images: one per post in the site's newspaper style, plus one for every other page.
+fs.mkdirSync(path.join(dist, 'og'), { recursive: true });
+const photo = `data:image/jpeg;base64,${fs.readFileSync(path.join(dist, 'riley.jpg')).toString('base64')}`;
+await Promise.all([
+  ogImage({ name: SITE.name, photo, kicker: 'VICTORIA, BC', title: SITE.tagline.replace(' - ', ' — '), footer: 'Writing, work and projects' })
+    .then((png) => fs.writeFileSync(path.join(dist, 'og', 'site.png'), png)),
+  ...posts.map((p) => ogImage({ name: SITE.name, photo, kicker: String(p.category || 'Dispatch').toUpperCase(), title: p.title, footer: `${fmtDate(p.date)} · ${p.minutes} min read` })
+    .then((png) => fs.writeFileSync(path.join(dist, 'og', `${p.slug}.png`), png))),
+]);
+
+// RSS feed so readers can follow new posts.
+const rfc822 = (d) => new Date(d + 'T12:00:00Z').toUTCString();
+fs.writeFileSync(path.join(dist, 'feed.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>${esc(SITE.name)}</title>
+  <link>${SITE.url}/</link>
+  <description>${esc(SITE.tagline)}</description>
+  <language>en</language>
+  <atom:link href="${SITE.url}/feed.xml" rel="self" type="application/rss+xml"/>
+${posts.map((p) => `  <item>
+    <title>${esc(p.title)}</title>
+    <link>${SITE.url}/posts/${p.slug}/</link>
+    <guid>${SITE.url}/posts/${p.slug}/</guid>
+    <pubDate>${rfc822(p.date)}</pubDate>
+    <description>${esc(p.dek || p.title)}</description>
+  </item>`).join('\n')}
+</channel>
+</rss>
+`);
 
 // Sitemap and robots.txt so search engines can find every page.
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
