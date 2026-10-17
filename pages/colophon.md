@@ -18,7 +18,7 @@ I built this site the same way I build my other projects: by describing what I w
 
 ## What it runs on
 
-- **Type:** [Newsreader](https://fonts.google.com/specimen/Newsreader) for reading and [Inter](https://fonts.google.com/specimen/Inter) for labels.
+- **Type:** [Spectral](https://fonts.google.com/specimen/Spectral) for reading and [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) for labels.
 - **Hosting:** [Railway](https://railway.com), which rebuilds the site every time a change is pushed to GitHub.
 - **Domain:** registered and managed on [Cloudflare](https://www.cloudflare.com).
 - **Code:** public on [GitHub](https://github.com/rileytrottier23/Personal-Site).
