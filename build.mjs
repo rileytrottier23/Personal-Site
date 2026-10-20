@@ -19,6 +19,13 @@ const SITE = {
   linkedin: 'https://www.linkedin.com/in/rileytrottier/',
 };
 
+// Cloudflare Web Analytics: cookieless visitor counts. The beacon token comes from the CF_BEACON_TOKEN
+// variable on Railway; with no token set, no analytics script is added.
+const CF_BEACON = (process.env.CF_BEACON_TOKEN || '').replace(/[^a-zA-Z0-9]/g, '');
+const analytics = CF_BEACON
+  ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${CF_BEACON}"}'></script>\n`
+  : '';
+
 const root = path.dirname(new URL(import.meta.url).pathname);
 const dist = path.join(root, 'dist');
 fs.rmSync(dist, { recursive: true, force: true });
@@ -122,7 +129,7 @@ ${body}
     <a href="${prefix}colophon/">How this site is built</a> — <a href="${prefix}feed.xml">RSS</a>
   </footer>
 </div>
-</body>
+${analytics}</body>
 </html>
 `; };
 
