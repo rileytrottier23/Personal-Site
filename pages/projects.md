@@ -2,7 +2,7 @@
 title: Projects
 kicker: AI portfolio
 dek: Things I've built on my own time to learn how AI products work in practice. All of them are public on GitHub.
-description: "Riley Trottier's personal AI projects: apps, an MCP server, agent evaluation tools and Claude skill libraries."
+description: "Riley Trottier's personal AI projects: apps, an MCP server and Claude skill libraries."
 ---
 
 <div class="project">
@@ -35,16 +35,6 @@ description: "Riley Trottier's personal AI projects: apps, an MCP server, agent 
     <dt>What I built</dt><dd>A reference MCP server, pulled out of ReflectAI. It uses the Streamable HTTP transport with OAuth 2.0 sign-in, and it's connected to Claude.</dd>
   </dl>
   <p class="links"><a href="https://github.com/rileytrottier23/journal-mcp-server">Code</a></p>
-</div>
-
-<div class="project">
-  <div class="cat">AI EVALUATION · LIVE · 2026</div>
-  <h3>Product Evaluator</h3>
-  <dl class="case">
-    <dt>The idea</dt><dd>Keep an AI agent's requirements and its tests connected.</dd>
-    <dt>What I built</dt><dd>A tool that turns a product requirements document into a structured test suite for an AI agent.</dd>
-  </dl>
-  <p class="links"><a href="https://product-evaluator-production.up.railway.app">Live app</a><a href="https://github.com/rileytrottier23/product-evaluator">Code</a></p>
 </div>
 
 <div class="project">
