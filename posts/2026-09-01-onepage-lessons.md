@@ -1,24 +1,28 @@
 ---
-title: What I learned building OnePage, my first AI project
+title: OnePage, the task app I built to see if I could
 date: 2026-09-01
-dek: I'm a Senior Product Manager, not an engineer. OnePage was how I found out whether I could build and ship something myself.
+dek: My first app took two weeks on Replit in May 2025. Keeping it running taught me just as much.
 category: Building
 app_published: May 2025
 ---
 
-OnePage was the first thing I ever built with AI. I'm a Senior Product Manager, not an engineer, and the idea (a simple AI-powered task management app) was really an excuse to find out whether I could turn "I understand agentic AI at a product level" into "I have actually shipped something." [Replit](https://replit.com) made that possible in a way that would have been out of reach for me otherwise.
+OnePage was the first thing I built with AI. It's a task manager where everything sits on one screen, with a Today section at the top for what needs doing now, and I started it on [Replit](https://replit.com) in May 2025. I'm a Senior Product Manager and I had never shipped software myself. I understood agentic AI at a product level, and I wanted to find out whether that was enough to actually build and ship something. Replit made it possible to try.
 
-I didn't know a lot going in. I remember how much I had to look up that a more experienced developer would have taken for granted: how a frontend talks to a backend, what a database migration even is, why my app worked perfectly in one session and broke mysteriously in the next. None of it was exotic. It was the ordinary texture of building software, and I was running into most of it for the first time.
+The first version came together in about two weeks. Going back through the commit history, repeating tasks came first, on day one, with rules for daily, weekly, monthly and quarterly. Then a landing page, a sidebar that remembers if you collapsed it, and an archive where finished tasks go so you can look back at them later. Drag and drop and indenting subtasks with the Tab key came a few days later. The AI part, a monthly report from Claude on what you got done, was the last thing I added, on May 21.
 
-What surprised me was how much of building OnePage turned out to be product thinking wearing a different hat. Deciding what "done" meant for a task. Deciding how forgiving the interface should be when someone typed something ambiguous. Those were product decisions I was already equipped to make. The code around them was the part I had to learn, usually by getting it wrong first.
+I had to look up a lot that a developer would take for granted: how a frontend talks to a backend, what a database migration is, why the app worked in one session and broke in the next. OnePage ended up as React on the front, Express on the back and a Postgres database. I was running into most of it for the first time, and I usually learned the code by getting it wrong first.
 
-I also had to get comfortable not knowing things. There's a specific discomfort in asking a tool to explain something you suspect you should already understand, and I had to get over that quickly or I wasn't going to finish anything. Curiosity turned out to be more useful than confidence.
+The decisions themselves were mostly product decisions, and I already knew how to make those. What counts as "done" for a task, how forgiving the input box should be when someone types something ambiguous, whether a finished task should disappear right away or stay on screen until tomorrow (I went with tomorrow). You can also paste a block of text and get one task per line.
 
-[OnePage is still running today](https://onepage-production-a1c7.up.railway.app). It has since moved off Replit onto [Railway](https://railway.com), alongside my other projects, as I've kept building. It's not a polished product, and I don't think it needs to be. To me it's the first time I closed the loop between having opinions about AI product work and actually doing it. Every project since has been easier because of what OnePage forced me to learn the hard way.
+Asking a tool to explain something I suspected I should already understand was uncomfortable. I had to get over that quickly or I wasn't going to finish anything.
 
 <figure><img src="../../onepage-home.webp" alt="OnePage home page with the headline The simplest way to manage your tasks and three features: everything in one view, repeating tasks and smart archiving" width="1000" height="449" loading="lazy"><figcaption>The OnePage home page as it runs today on Railway.</figcaption></figure>
 
-If you're a PM curious about building something yourself, start smaller than you think you need to, and expect to feel like a beginner for longer than feels comfortable. It's worth it.
+Then I mostly left it alone for a year. When I came back to it in 2026, most of the work was keeping it running. In June I found that tasks could break when the AI service was down, so I made the app handle outages and saved the reports so they don't disappear. Getting code from Replit into GitHub took a run of fixes in June and August, including pushes that raced each other and a sync token that expired without telling anyone. In September I moved OnePage off Replit onto [Railway](https://railway.com) with my other projects, replaced my own login code with Clerk and changed the database driver. Tests now run on every push.
+
+OnePage is still running. It isn't polished, and I don't think it needs to be. It's the first time I went from having opinions about AI products to building one, and the projects after it, including [ReflectAI](../building-reflectai/), have been easier because of it.
+
+If you're a PM thinking about building something, start smaller than you think you need to. I'd love to hear what other PMs are building on the side.
 
 ---
 
