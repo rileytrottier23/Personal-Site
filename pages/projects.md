@@ -1,7 +1,7 @@
 ---
 title: Projects
 kicker: AI portfolio
-dek: Things I've built on my own time to learn how AI products work in practice. All of them are public on GitHub.
+dek: Apps and tools I've built and shipped on my own time. The code for all of them is public on GitHub.
 description: "Riley Trottier's personal AI projects: apps, an MCP server and Claude skill libraries."
 ---
 

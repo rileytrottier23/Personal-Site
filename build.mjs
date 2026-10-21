@@ -136,7 +136,7 @@ ${analytics}</body>
 const about = `
   <section class="about" id="about">
     <h2>About</h2>
-    <p>I've spent about eight years in product management, across payments, health tech, public transit and now enterprise finance software. I'm based in Victoria, BC, where I'm learning French and playing more chess than my rating shows. Proud new father as of 2026.</p>
+    <p>I've spent about eight years in product management, across payments, health tech, public transit and now enterprise finance software. I'm based in Victoria, BC, where I'm learning French and playing a lot of chess. Proud new father as of 2026.</p>
     <p>I'm always glad to talk about product management and building with AI. <a href="about/">More about me</a> or <a href="mailto:${SITE.email}">send me an email</a>.</p>
   </section>`;
 
@@ -151,7 +151,7 @@ const nowStrip = `
 // Home page
 const intro = `
   <section class="intro">
-    <p>I'm a Senior Product Manager at Workday, building an agent for contract management and automated accounting. On my own time I build AI apps and tools to learn how these products work in practice. My experience covers a broad range of industries including finance, transportation, government and healthcare.</p>
+    <p>I'm a Senior Product Manager at Workday, building an agent for contract management and automated accounting. Outside work I build and ship my own AI apps, including two live web apps, an MCP server and a public library of Claude skills, and I write here about building them. Before Workday I worked on payments, public transit and health tech products.</p>
   </section>`;
 const [latest, ...rest] = posts;
 const leadHtml = latest
