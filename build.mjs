@@ -21,7 +21,9 @@ const SITE = {
 
 // Cloudflare Web Analytics: cookieless visitor counts. The beacon token comes from the CF_BEACON_TOKEN
 // variable on Railway; with no token set, no analytics script is added.
-const CF_BEACON = (process.env.CF_BEACON_TOKEN || '').replace(/[^a-zA-Z0-9]/g, '');
+// Accepts either the bare token or the whole snippet Cloudflare shows (the token is pulled out of it).
+const cfRaw = process.env.CF_BEACON_TOKEN || '';
+const CF_BEACON = (cfRaw.match(/token["'\s:]+([a-f0-9]{32})/i) || cfRaw.match(/\b([a-f0-9]{32})\b/i) || [, cfRaw.replace(/[^a-zA-Z0-9]/g, '')])[1];
 const analytics = CF_BEACON
   ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${CF_BEACON}"}'></script>\n`
   : '';
