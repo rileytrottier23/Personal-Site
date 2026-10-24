@@ -109,6 +109,8 @@ ${ld}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${prefix}styles.css?v=${cssVersion}">
+<script>try{var d=document.documentElement,t=localStorage.getItem('theme'),m=localStorage.getItem('motion');if(t==='light'||t==='dark')d.dataset.theme=t;if(m==='on')d.dataset.motion='on'}catch(e){}</script>
+<script src="${prefix}prefs.js?v=${cssVersion}" defer></script>
 </head>
 <body>
 ${progress ? '<div class="progress" aria-hidden="true"></div>' : ''}
@@ -123,6 +125,7 @@ ${progress ? '<div class="progress" aria-hidden="true"></div>' : ''}
   <nav class="site-nav" aria-label="Site">
     ${[['writing', 'Writing', `${prefix}#writing`], ['work', 'Work', `${prefix}work/`], ['projects', 'Projects', `${prefix}projects/`], ['about', 'About', `${prefix}about/`], ['github', 'GitHub', SITE.github]]
       .map(([key, label, href]) => `<a href="${href}"${key === current ? ' aria-current="page"' : ''}>${label}</a>`).join('')}
+    <span class="prefs"><button type="button" class="pref" data-pref="theme" hidden>Theme</button><button type="button" class="pref" data-pref="motion" aria-pressed="false" hidden>Motion</button></span>
   </nav>
 ${body}
   <footer class="colophon">
