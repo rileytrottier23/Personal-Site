@@ -1,7 +1,7 @@
 ---
-title: How I built ReflectAI, an AI journaling app
+title: Building ReflectAI, an AI Journaling App
 date: 2026-09-26
-dek: My second app. Getting the AI to write a useful report took one rewrite of its instructions. Privacy, sign-in and testing took far longer.
+dek: A daily journal where Claude writes monthly and yearly reports. The AI reports took one rewrite of the instructions; privacy, sign-in and testing took much longer.
 category: Building
 app_published: June 2025
 ---
@@ -18,15 +18,15 @@ A journal entry is also untrusted input to the AI. Someone could write "ignore y
 
 Logins were the part I underestimated most. I built my own sign-in system first, with accounts, passwords and sessions, and spent a lot of time fixing bugs in it. One stubborn bug showed people the wrong screen after they logged out, because the browser, the app's page rules and the server each had their own idea of who was signed in. Eventually I moved to [Clerk](https://clerk.com), a service built for sign-in, and most of those problems went away. The tricky part was the switch itself. Every entry and report was already tied to an account in my database, so I matched each Clerk sign-in to an existing account by email instead of rebuilding everything.
 
-Clerk wasn't the end of it, though. Its sign-in screens made the app look bad, and I couldn't fix that without leaving Clerk. So I switched again, to [Better Auth](https://www.better-auth.com), an open-source sign-in library that runs inside my own app and let me design those screens to match the rest of ReflectAI. The email matching I'd set up for Clerk carried over, so people kept their entries. It now has email verification, password reset and optional Google sign-in. Sign-in isn't what ReflectAI is about, but it's the first screen every person sees.
+Clerk wasn't the end of it, though. Its sign-in screens made the app look bad, and I couldn't fix that without leaving Clerk. So I switched again, to [Better Auth](https://www.better-auth.com), an open-source sign-in library that runs inside my own app and let me design those screens to match the rest of ReflectAI. The email matching I'd set up for Clerk carried over, so people kept their entries. It now has email verification, password reset and optional Google sign-in.
 
 I also learned to make changes in smaller steps. At one point I added a batch of security improvements all at once, and some of them broke the live app. I rolled everything back the next day. A few weeks later I added a smaller, more focused set of changes, and that time it worked.
 
-Some bugs didn't look like what they were. For a while, new people couldn't sign up at all. The tool connecting my app to its database crashed whenever a search came back empty, and for a brand-new user almost every search comes back empty. What looked like a sign-up bug was a problem underneath the app, and it took a while to find.
+For a while, new people couldn't sign up at all. It looked like a sign-up bug, but the tool connecting my app to its database crashed whenever a search came back empty, and for a brand-new user almost every search comes back empty. That one took a while to find.
 
 Over time ReflectAI changed from a daily journal with an AI button into a record you can look back on. Reports are saved now, and there's a yearly report as well as the monthly one. I also pulled out the piece that lets Claude read and write journal entries and published it as its own project, [journal-mcp-server](https://github.com/rileytrottier23/journal-mcp-server), with proper OAuth sign-in so it works as a Claude connector. I can ask Claude about my own journal now: search past entries for a topic, pull up a specific day, or summarize my happiness scores over a date range. Each of those is a separate tool with a narrow job. That server is also where I'm building an evaluation suite, a set of test cases that measure whether an agent uses those tools correctly.
 
-I built the early versions on Replit. In September 2026 I moved ReflectAI and my other apps to [Railway](https://railway.com), and I now do most of the development in Claude Code, with GitHub as the record of every change. ReflectAI runs today at [reflectai.net](https://reflectai.net). The model did its job once I told it clearly what the job was. Most of my time went to privacy, sign-in and testing.
+I built the early versions on Replit. In September 2026 I moved ReflectAI and my other apps to [Railway](https://railway.com), and I now do most of the development in Claude Code, with GitHub as the record of every change. ReflectAI runs today at [reflectai.net](https://reflectai.net).
 
 ---
 

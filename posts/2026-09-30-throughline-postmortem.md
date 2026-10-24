@@ -1,7 +1,7 @@
 ---
-title: Throughline, the dashboard I built and then turned off
+title: Why I Shut Down Throughline
 date: 2026-09-30
-dek: I spent a few weeks building a personal command centre with Claude. It looked great and never quite worked. Here's why I shut it down.
+dek: A personal dashboard built with Claude in September 2026, what went wrong with it, and why it was turned off after a few weeks.
 category: Building
 ---
 
@@ -15,23 +15,23 @@ I spent a lot of time on the design. It went through four visual directions befo
 
 <figure><img src="../../throughline-today.webp" alt="Throughline Today view: a blue left rail with Claude's note for the day and the calendar, a board of task lists, tasks done today, and primary inbox mail" width="1000" height="625" loading="lazy"><figcaption>The Today view in the blueprint design: Claude's note and calendar on the left, the task board, and the primary inbox.</figcaption></figure>
 
-Some of the work was in details nobody would notice. Google Tasks can't move a task from one list to another, so a move is really a copy and a delete, and the task loses its history along the way. Every move on the board offered an undo for 12 seconds in case I'd dragged something to the wrong list.
+Google Tasks can't move a task from one list to another, so a move is really a copy and a delete, and the task loses its history along the way. Every move on the board offered an undo for 12 seconds in case I'd dragged something to the wrong list.
 
 I never got to the point where I trusted it. Tasks were often out of date. Ticking things off in Throughline sometimes made tomorrow's repeating tasks show up early in Google Tasks. Subtasks landed in the wrong place. It was expensive to run too, because a Claude session woke up every hour to rebuild a briefing that mostly hadn't changed.
 
 At the end of September I asked Claude to step back and score the whole thing against what I'd set out to do. Most of the goals were only partly met, or not met at all. And for weeks the live layer hadn't been live. The page was asking for the Google Tasks connector by the wrong name, so every live request was failing quietly and the page fell back to the last snapshot the scheduled run had written. Nothing on screen said anything was wrong. It just looked a little stale, so I kept using it.
 
-We fixed that, and a few other things: fewer live checks per minute, a label showing how fresh the data was, and the hourly run cut to three times a day. Fixing the connector exposed the bigger problem. I wanted three things at once: to act from Throughline, to keep Google Tasks as the source of truth in case Throughline broke, and to see only today's tasks in both places. Google Tasks can't give you all three. Its repeating tasks only behave properly when you tick them in Google's own app. Tick them from anywhere else and the next occurrence appears immediately. Every workaround moved the source of truth somewhere I didn't want it, or asked me to change how I work to suit the tool.
+We fixed that, along with fewer live checks per minute, a label showing how fresh the data was, and the hourly run cut to three times a day. Then I hit a bigger problem. I wanted three things at once: to act from Throughline, to keep Google Tasks as the source of truth in case Throughline broke, and to see only today's tasks in both places. Google Tasks can't give you all three. Its repeating tasks only behave properly when you tick them in Google's own app. Tick them from anywhere else and the next occurrence appears immediately. Every workaround moved the source of truth somewhere I didn't want it, or asked me to change how I work to suit the tool.
 
-Looking at it plainly, most of what I'd built was the part any task app already does well: showing tasks, syncing ticks, handling repeats. Claude's suggestion was to switch to a standard task app like Todoist or TickTick and keep a short daily briefing from Claude. I didn't want to pay for another app, so I stayed on Google Tasks as it is. The part only Claude could add, a read on what matters today and a look back at the week, was the smallest and most reliable piece of the whole thing.
+Most of what I'd built was the part any task app already does well: showing tasks, syncing ticks, handling repeats. Claude's suggestion was to switch to a standard task app like Todoist or TickTick and keep a short daily briefing from Claude. I didn't want to pay for another app, so I stayed on Google Tasks as it is. The part only Claude could add, a read on what matters today and a look back at the week, was the smallest and most reliable piece of the whole thing.
 
-So I turned it off on September 30 and deleted the page. It was strange to delete something I'd put that much care into, but the product didn't meet the need it was built for, every fix added complexity, and keeping it running cost more than it gave back.
+So I turned it off on September 30 and deleted the page. It was strange to delete something I'd put that much care into. But it wasn't doing the job I built it for, and keeping it running cost more than it gave back.
 
 A few things I'm taking with me:
 
-- When something breaks, the product should say so on screen. Old data that looks current is worse than an error.
+- When something breaks, the product should say so on screen, not keep showing old data as if it were current.
 - Build the part only you can build, and use an existing tool for the rest.
 - Check early whether the foundation can do what you need. I spent weeks working around the limits of a simple task app.
-- Ask whether the thing should exist before asking how to fix it. That was the most useful question in the whole project, and I asked it last.
+- Ask whether the thing should exist before asking how to fix it. I asked that last, and it was the most useful question of the project.
 
 I don't regret building it. I learned more about connectors, scheduled runs and live data in those few weeks than I would have from reading about them.

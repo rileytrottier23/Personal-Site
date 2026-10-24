@@ -1,7 +1,7 @@
 ---
 title: Probabilistic Planner, Deterministic Executor
 date: 2026-10-17
-dek: In finance software, every number has to be explainable. That changes how I put AI into a product.
+dek: A design for AI features where every number has to be explainable. The model proposes, and plain code checks and carries it out.
 category: Product
 ---
 
@@ -23,6 +23,6 @@ I use the same split in my own projects, on a smaller scale. In [ReflectAI](../b
 
 The split also makes the system easier to test. The deterministic half can be tested like any other code: same input, same output, every time. The model half needs a different kind of test, a set of realistic cases with a clear bar for what counts as good enough. I'm building one of those now for the journal MCP server. It's much easier to write those cases when the model's job is small and well defined.
 
-When I'm designing a feature, I go step by step and ask whether the step needs judgment or precision. Reading a crumpled receipt needs judgment, and adding up a column needs precision. I give each step to the tool that's built for it, and make the code check the model's work before a person relies on it.
+When I'm designing a feature, I go step by step and ask whether each one needs judgment, like reading a crumpled receipt, or precision, like adding up a column. The model gets the judgment steps, code gets the precision steps, and the code checks the model's work before a person relies on it.
 
 *Views are my own and don't represent Workday.*
