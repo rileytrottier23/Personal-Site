@@ -10,9 +10,10 @@ I built this site the same way I build my other projects: by describing what I w
 ## How it works
 
 - **Markdown in, HTML out:** each post is a Markdown file. One short Node script turns the posts and pages into plain HTML. There's no framework and no database.
-- **Almost no JavaScript:** the pages are static HTML and CSS. The only script on the site loads my latest GitHub activity on the front page.
+- **Very little JavaScript:** the pages are static HTML and CSS. Two small scripts load my latest GitHub activity on the front page and run the reader settings in the menu.
+- **Motion mode:** the Motion button in the menu turns on an optional mode where rules draw in, headlines set word by word, diagrams print as you scroll and pages turn. It's off by default, remembered in your browser, and never runs if your device asks for reduced motion.
 - **Share images made at build time:** the preview card you see when a post is linked on LinkedIn is drawn by the build script from the post's title, in the same fonts as the site.
-- **Light and dark:** the site follows your device's light or dark setting.
+- **Light and dark:** the site follows your device's light or dark setting, and the switch in the menu lets you pick one.
 - **Small details in CSS:** the reading-progress bar on posts and the fade between pages are a few lines of CSS, and they switch off if your device asks for reduced motion.
 - **Built for search:** every page has a canonical address, a sitemap entry and structured data that tells search engines who the site is about. There's an [RSS feed](../feed.xml) too.
 
