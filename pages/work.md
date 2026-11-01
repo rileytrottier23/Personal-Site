@@ -15,7 +15,7 @@ I began my career at Workday by driving development for usage-based billing prod
 
 <p class="role">Product Owner, Umo Pass and Services (promoted to manage the Services team) · 2022 – 2026</p>
 
-- Led a team of 12 delivering an enterprise SaaS platform for public transit, growing ARR by 150%.
+- Led a team of 12 delivering an enterprise SaaS platform for public transit, growing revenue from $750K to $12M.
 - Doubled the pace of development on identity management by getting executive support for an Amazon Cognito integration, and took on a second team of 4 as a result.
 - Worked with the mobile app team to connect the web platform to a set of APIs, increasing user acquisition by 20%.
 - Ran launch education with marketing and customer success, keeping 100% of customers and growing net revenue retention by 20%.
