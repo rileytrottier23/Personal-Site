@@ -15,7 +15,7 @@ const securityHeaders = {
   'Strict-Transport-Security': 'max-age=31536000',
 };
 
-http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
   for (const [name, value] of Object.entries(securityHeaders)) res.setHeader(name, value);
   // Send the old Railway address and www to the main domain so search engines see one site.
   const host = String(req.headers.host || '').toLowerCase().split(':')[0];
@@ -46,3 +46,10 @@ http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream', 'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=86400' });
   fs.createReadStream(file).pipe(res);
 }).listen(port, '0.0.0.0', () => console.log(`Serving dist/ on port ${port}`));
+
+// Railway sends SIGTERM on redeploy and sleep. Exiting cleanly (code 0) instead
+// of dying on the signal stops npm from logging "npm error signal SIGTERM".
+process.once('SIGTERM', () => {
+  server.close(() => process.exit(0));
+  setTimeout(() => process.exit(0), 5000).unref();
+});
