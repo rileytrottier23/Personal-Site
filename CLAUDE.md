@@ -15,6 +15,8 @@ Read `SPEC.md` first. It says what this site is, what must stay true, and what w
 - **Never weaken checks:** don't weaken or delete an existing check or test to make a change pass. Fix the code, or stop and ask.
 - **Read, then edit:** run the build once before changing anything, so you know what was already broken. Then list the files you need, read them in one pass, make all the edits, and build again.
 - **No stray files:** don't create new markdown files without asking (posts and pages Riley asked for are fine). Each fact lives in one file; update that file instead of starting another.
+- **Say your assumptions:** before coding, state what you are assuming. If the request could mean two things, name both and ask instead of picking one quietly.
+- **Surgical changes:** touch only the lines the task needs. Don't reformat or refactor nearby code. Mention unrelated dead code instead of deleting it, but remove anything your own change left unused.
 
 ## Commands
 | Task | Command |
