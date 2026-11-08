@@ -15,7 +15,22 @@ const securityHeaders = {
   'Strict-Transport-Security': 'max-age=31536000',
 };
 
+function badRequest(res) {
+  res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Bad request');
+}
+
 const server = http.createServer((req, res) => {
+  try {
+    handle(req, res);
+  } catch (err) {
+    // Last line of defence: one bad request must never take the site down.
+    console.error('Request failed:', err);
+    if (!res.headersSent) res.writeHead(500);
+    res.end();
+  }
+}).listen(port, '0.0.0.0', () => console.log(`Serving dist/ on port ${port}`));
+
+function handle(req, res) {
   for (const [name, value] of Object.entries(securityHeaders)) res.setHeader(name, value);
   // Send the old Railway address and www to the main domain so search engines see one site.
   const host = String(req.headers.host || '').toLowerCase().split(':')[0];
@@ -24,18 +39,27 @@ const server = http.createServer((req, res) => {
     return;
   }
   // A malformed URL (e.g. a stray "%") must not throw: an uncaught error here
-  // would crash the whole server.
+  // would crash the whole server. Encoded control characters (e.g. %0d%0a line
+  // breaks) and backslashes have no place in a real path either; left in, they
+  // could reach the Location header below, where Node throws.
   let p;
   try {
     p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
   } catch {
-    res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Bad request');
+    badRequest(res);
     return;
   }
+  if (/[\u0000-\u001f\u007f\\]/.test(p)) { badRequest(res); return; }
   let file = path.normalize(path.join(root, p));
   if (file !== root && !file.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
   if (fs.existsSync(file) && fs.statSync(file).isDirectory()) {
-    if (!p.endsWith('/')) { res.writeHead(301, { Location: p + '/' }).end(); return; }
+    if (!p.endsWith('/')) {
+      // Redirect to the cleaned, site-relative path, never to the raw input:
+      // "//evil.com/.." would otherwise send visitors to another site.
+      const rel = path.relative(root, file).split(path.sep).map(encodeURIComponent).join('/');
+      res.writeHead(301, { Location: rel ? `/${rel}/` : '/' }).end();
+      return;
+    }
     file = path.join(file, 'index.html');
   }
   if (!fs.existsSync(file)) {
@@ -45,7 +69,7 @@ const server = http.createServer((req, res) => {
   const ext = path.extname(file);
   res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream', 'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=86400' });
   fs.createReadStream(file).pipe(res);
-}).listen(port, '0.0.0.0', () => console.log(`Serving dist/ on port ${port}`));
+}
 
 // Railway sends SIGTERM on redeploy and sleep. Exiting cleanly (code 0) instead
 // of dying on the signal stops npm from logging "npm error signal SIGTERM".
