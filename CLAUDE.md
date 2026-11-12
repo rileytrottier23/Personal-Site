@@ -2,6 +2,8 @@
 
 Read `SPEC.md` first. It says what this site is, what must stay true, and what we're not building. See `README.md` for how to add posts and pages.
 
+Read `DESIGN.md` before any visual change (colours, type, layout, motion). It explains the values in `src/styles.css`. When you change a style, update `DESIGN.md` in the same commit and run `npx @google/design.md lint DESIGN.md`.
+
 ## How to work with Riley
 - Plan before coding. For anything bigger than a small fix, write a short plan and wait for a yes.
 - If a change isn't in `SPEC.md`, say so and ask whether to update the spec first.
