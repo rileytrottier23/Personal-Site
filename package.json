@@ -5,9 +5,9 @@
   "type": "module",
   "description": "Riley Trottier's personal site and blog",
   "scripts": {
-    "build": "node build.mjs",
+    "build": "node build.mjs && node lib/build-diagrams.mjs",
     "start": "node server.mjs",
-    "dev": "node build.mjs && node server.mjs"
+    "dev": "npm run build && node server.mjs"
   },
   "engines": {
     "node": ">=20"

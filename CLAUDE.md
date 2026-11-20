@@ -29,7 +29,8 @@ Read `DESIGN.md` before any visual change (colours, type, layout, motion). It ex
 
 ## Layout
 - `posts/` blog posts (`YYYY-MM-DD-slug.md`); `pages/` standalone pages
-- `build.mjs` builds everything into `dist/`; `server.mjs` serves it
+- `build.mjs` builds everything into `dist/`, then `lib/build-diagrams.mjs` draws the diagrams; `server.mjs` serves it
+- `diagrams/` post diagrams as code, drawn to PNG at build time (`lib/diagrams.mjs`); prefer these over committing images
 - `public/` static files; `.b64` images are decoded at build time
 
 ## Rules
