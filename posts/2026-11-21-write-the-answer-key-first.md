@@ -1,9 +1,8 @@
 ---
 title: Writing Answer Keys for AI Evaluations
-date: 2026-11-20
+date: 2026-11-21
 dek: Testing AI features with synthetic documents and known answers, separate scores for the model and the code, and a quality metric next to every speed metric.
 category: Product
-draft: true
 ---
 
 An answer key is the list of correct values for a test document. I write it before I look at anything the model produces. A first demo can show that an AI feature gets something right, but only an evaluation tells you how often, and you can't run one until you've written down the right answers.
@@ -21,7 +20,7 @@ So I work in four steps, in this order:
 
 ## Synthetic documents
 
-For my work that means synthetic test documents. These are realistic fake contracts I make myself, so I know the correct value for every field. No customer data is involved, and I can make them as awkward as I like:
+I use synthetic test documents. These are realistic fake contracts I make myself, so I know the correct value for every field. No customer data is involved, and I can make them as awkward as I like:
 
 - A free first month
 - An unusual payment term
