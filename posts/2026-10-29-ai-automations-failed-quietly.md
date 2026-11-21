@@ -1,7 +1,7 @@
 ---
 title: Fixing AI Automations That Failed Quietly
 date: 2026-10-29
-dek: Three scheduled AI jobs that never worked, and the changes to where they run, what they cost and how they get checked.
+dek: Three scheduled AI jobs that quietly didn't do their job, and the changes to where they run, what they cost and how they get checked.
 category: Product
 ---
 
@@ -13,7 +13,9 @@ It started with three jobs I'd set up on a cloud scheduler. One was supposed to 
 
 The second one was more misleading. It failed with an error about a repository, and that repository had been renamed. I fixed the name, re-ran it, and got the same error. The rename was a real problem, but it wasn't the one stopping the job. The real cause was that the cloud environment couldn't sign in to that system at all. Its history showed two runs in 27 days, both failed. It had never worked.
 
-None of the three cloud jobs ever did its job. I rebuilt all of them to run on my own machine, with the same access I have. The downside is they only run while my laptop is on. I'll take that over jobs that silently do nothing. When my laptop is off, a job doesn't run and I know why. A job that runs somewhere else and fails is much harder to notice.
+The third was my monthly report on visits to my website, LinkedIn and GitHub. It ran on time and sent a tidy email full of tables. But the analytics dashboard for my site had signed me out, so the job fell back to counting raw server requests, most of them from bots. It mentioned that in a note near the bottom. The visitor numbers at the top still looked real.
+
+The first two never did their job at all, so I rebuilt them to run on my own machine, with the same access I have. The downside is they only run while my laptop is on. I'll take that over jobs that silently do nothing. When my laptop is off, a job doesn't run and I know why. A job that runs somewhere else and fails is much harder to notice.
 
 <figure><img src="../../automations-where-it-runs.webp" alt="A comparison of the same job on a cloud scheduler and on my own machine. In the cloud it had no email access, could not sign in to other systems, and ran two times in 27 days with both runs failing. On my machine it has my access and works, but only runs while my laptop is on" width="1000" height="845" loading="lazy"><figcaption>Where a job runs decides what it can reach.</figcaption></figure>
 
