@@ -79,6 +79,11 @@ const personLd = {
   jobTitle: SITE.role,
   worksFor: { '@type': 'Organization', name: SITE.employer },
   address: { '@type': 'PostalAddress', addressLocality: 'Victoria', addressRegion: 'BC', addressCountry: 'CA' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Ivey Business School, Western University' },
+    { '@type': 'CollegeOrUniversity', name: 'University of Victoria' },
+  ],
+  knowsAbout: ['Product management', 'AI agents', 'Model Context Protocol', 'Enterprise finance software'],
   sameAs: [SITE.linkedin, SITE.github],
 };
 const ldScript = (obj) => `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', ...obj }).replace(/</g, '\\u003c')}</script>`;
@@ -249,7 +254,8 @@ for (const f of pageNames) {
     prefix: '../',
     current: slug,
     urlPath: `/${slug}/`,
-    ld: ldScript(personLd),
+    // The About page is marked as a profile page so search engines treat it as the page about Riley.
+    ld: ldScript(slug === 'about' ? { '@type': 'ProfilePage', url: `${SITE.url}/about/`, mainEntity: personLd } : personLd),
     body: `
   <article>
     <header class="lead">
