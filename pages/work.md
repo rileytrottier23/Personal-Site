@@ -9,7 +9,7 @@ description: Riley Trottier's product management experience, from payments start
 
 <p class="role">Senior Product Manager, Revenue Center · Victoria, BC · 2026 – present</p>
 
-I began my career at Workday by driving development for usage-based billing products. I quickly moved to the Revenue Contract Agent, where I develop automated accounting solutions that generate billing and revenue schedules for customers who have uploaded a contract. The agent is new, and I'm learning a lot about how product management works for agents. In many ways it's the same, but with much more complicated testing and security.
+I began my career at Workday by driving development for usage-based billing products. I quickly moved to an agent for contract management and automated accounting, which generates billing and revenue schedules from contracts that customers upload. The agent is new, and I'm learning a lot about how product management works for agents. In many ways it's the same, but with much more complicated testing and security.
 
 ## Cubic Transportation Systems
 
