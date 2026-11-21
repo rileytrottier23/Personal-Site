@@ -23,7 +23,7 @@ I also started keeping the full prompt for every scheduled job in a git repo, th
 
 Cost was the next problem. I had an AI reviewer check a tracking spreadsheet, and the first pass was useful. It also took about 7 minutes and around 165,000 tokens, so running it every day wasn't realistic. I swapped it for a plain script that checks the spreadsheet's structure and rules and flags items that have been open too long. It uses no model tokens and gives the same answer every time.
 
-The script has a limit. It only catches what I've written a rule for, so it won't notice anything outside those rules. That's why I still use the AI reviewer, just once, on new work that's going to other people. It's the same split I use when I think about AI in products: [the model handles judgment and plain code handles the checks](https://rileytrottier.com/posts/probabilistic-planner-deterministic-executor/) that need the same answer every time.
+The script has a limit. It only catches what I've written a rule for, so it won't notice anything outside those rules. That's why I still use the AI reviewer, just once, on new work that's going to other people. The model handles judgment, and [plain code handles the checks](https://rileytrottier.com/posts/probabilistic-planner-deterministic-executor/) that need the same answer every time.
 
 <figure><img src="../../automations-reviewer-vs-script.webp" alt="AI reviewer compared with a plain script. The AI reviewer took about 7 minutes and 165,000 tokens and is used once on new work going to other people. The script takes seconds, uses no model tokens, gives the same answer every time and runs daily" width="1000" height="722" loading="lazy"><figcaption>The daily check moved to a script. The AI reviewer still does the one-off review.</figcaption></figure>
 
@@ -38,7 +38,5 @@ The checklist I use now for every scheduled job has five items:
 5. Check the run history yourself. Two failed runs in 27 days were sitting right there in the history.
 
 <figure><img src="../../automations-checklist.webp" alt="A five-item checklist for scheduled AI jobs: know where it runs, know what it can reach, keep the prompt in git, use the cheapest tool that does the job, and check the run history yourself" width="1000" height="858" loading="lazy"><figcaption>The checklist I use now for every scheduled job.</figcaption></figure>
-
-So I treat AI automation like any other software now, and I check the run history myself instead of assuming no news is good news.
 
 *Views are my own and don't represent Workday.*
