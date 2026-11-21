@@ -5,7 +5,7 @@ dek: Senior Product Manager at Workday, based in Victoria, BC. I build AI apps a
 description: About Riley Trottier, a Senior Product Manager at Workday in Victoria, BC, who builds and writes about AI products.
 ---
 
-I'm a Senior Product Manager at Workday, building an agent for contract management and automated accounting. On my own time I build and ship AI apps of my own, and I write here about what building them taught me.
+I'm a Senior Product Manager at Workday, building an agent for contract management and automated accounting.
 
 I've spent about eight years in product management, across payments, health tech, public transit and now enterprise finance software. I have an MBA from the Richard Ivey School of Business and a degree in history and professional writing from the University of Victoria. The full history is on the [Work](../work/) page.
 
@@ -15,7 +15,7 @@ Everything on the [Projects](../projects/) page started as a question I wanted t
 
 ## Outside of work
 
-I'm based in Victoria, BC. I'm learning French, playing more chess than my rating shows, and challenging myself on the squash court and golf course. I've competed nationally in field hockey and badminton, and love to play sports in general. I've led volunteer organizations and sat on numerous boards for non-profits and private entities, and am passionate about helping my community.
+I'm based in Victoria, BC. I'm learning French, playing more chess than my rating shows, and challenging myself on the squash court and golf course. I've competed nationally in field hockey and badminton, and love to play sports in general. I've led volunteer organizations and sat on boards for non-profits and private organizations.
 
 Proud new father as of 2026.
 

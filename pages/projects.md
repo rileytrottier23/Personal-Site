@@ -11,7 +11,7 @@ description: "Riley Trottier's personal AI projects: apps, an MCP server and Cla
   <dl class="case">
     <dt>The idea</dt><dd>A journal that shows you the patterns in what you write. You write one entry a day and rate how happy you felt from 1 to 10.</dd>
     <dt>What I built</dt><dd>A web app with user accounts where AI writes a monthly and a yearly report from your entries. Reports are saved so you can look back on them.</dd>
-    <dt>What I learned</dt><dd>The instructions you give the model are the product. Most of the hard work was privacy, sign-in and testing, which had little to do with AI.</dd>
+    <dt>What I learned</dt><dd>The AI reports took one rewrite of the instructions. Privacy, sign-in and testing took much longer.</dd>
   </dl>
   <p class="links"><a href="https://reflectai.net">Live app</a><a href="../posts/building-reflectai/">Read the write-up</a><a href="https://github.com/rileytrottier23/ReflectAI">Code</a></p>
 </div>
@@ -22,7 +22,7 @@ description: "Riley Trottier's personal AI projects: apps, an MCP server and Cla
   <dl class="case">
     <dt>The idea</dt><dd>My first AI project. I wanted to find out whether a product manager who isn't an engineer could build and ship something.</dd>
     <dt>What I built</dt><dd>A task manager where everything happens on one screen, with AI-written monthly productivity reports.</dd>
-    <dt>What I learned</dt><dd>Much of building software is product thinking. Curiosity turned out to be more useful than confidence.</dd>
+    <dt>What I learned</dt><dd>I had never shipped software before, so I learned a lot that a developer takes for granted, like how a frontend talks to a backend and what a database migration is. Usually by getting it wrong first.</dd>
   </dl>
   <p class="links"><a href="https://onepage-production-a1c7.up.railway.app">Live app</a><a href="../posts/onepage-lessons/">Read the write-up</a><a href="https://github.com/rileytrottier23/OnePage">Code</a></p>
 </div>
