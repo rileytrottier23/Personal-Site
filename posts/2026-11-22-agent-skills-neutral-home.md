@@ -3,7 +3,6 @@ title: Agent Skills Moves to a Neutral Home
 date: 2026-11-22
 dek: Anthropic handed the Agent Skills standard to the Agentic AI Foundation. What that changes, and what it leaves alone, for a public library of 65 skills.
 category: Product
-draft: true
 ---
 
 The world of AI changes quickly. Many of the skills, best practices and technologies are out of date a few months after they are released. And without a lot of formal regulations, builders and users are vulnerable to sudden changes they may not understand. It's important to not just build your own stack and constantly stress test it, but to keep an eye on what is happening in the larger AI community.
