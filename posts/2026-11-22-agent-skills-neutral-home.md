@@ -6,6 +6,8 @@ category: Product
 draft: true
 ---
 
+The world of AI changes quickly. Many of the skills, best practices and technologies are out of date a few months after they are released. And without a lot of formal regulations, builders and users are vulnerable to sudden changes they may not understand. It's important to not just build your own stack and constantly stress test it, but to keep an eye on what is happening in the larger AI community.
+
 On October 22, Anthropic gave the Agent Skills standard to the Agentic AI Foundation, a group that runs under the Linux Foundation. Anthropic co-founded the foundation last year with Block and OpenAI, and it already looks after the Model Context Protocol (MCP), which Anthropic handed over when the foundation launched in December 2025.
 
 Agent Skills is the format behind the skills I [wrote about in October](https://rileytrottier.com/posts/library-of-ai-skills/). A skill is a folder with a SKILL.md file in it, plus any scripts or reference files it needs. The assistant reads the short description at the top of the file and loads the rest when a task matches it, so it can carry a lot of skills without loading them all up front.
@@ -44,9 +46,9 @@ For a library like this, day to day, nothing changes. The file format is the sam
 
 Where the format goes next is now up to the project and its community. Anthropic proposed starting with a roadmap of three items, and each one lands somewhere in my repos:
 
-1. Versioned releases of the spec. My repos already keep a changelog for every skill change. Once the format has version numbers too, a skill could say which version it was written for.
-2. A formal proposal process. Anthropic has asked for feedback on proposed spec changes on GitHub and in the project's Discord. With a formal process, a change to how skills load should be visible well before it reaches my setup.
-3. Security guidance for people who write and install skills. A skill can include scripts, so installing one means running someone else's instructions with the assistant's access.
+1. **Versioned releases of the spec.** My repos already keep a changelog for every skill change. Once the format has version numbers too, a skill could say which version it was written for.
+2. **A formal proposal process.** Anthropic has asked for feedback on proposed spec changes on GitHub and in the project's Discord. With a formal process, a change to how skills load should be visible well before it reaches my setup.
+3. **Security guidance for people who write and install skills.** A skill can include scripts, so installing one means running someone else's instructions with the assistant's access.
 
 <figure><img src="../../skills-roadmap.png" alt="The three proposed roadmap items mapped to my library. Versioned spec releases: each repo already keeps a changelog of skill changes, and the format would get versions too. A formal proposal process: a change to how skills load would be visible before it reaches my setup. Security guidance: applies first to the vendored folder, the skills other people wrote, pinned to an upstream commit" width="1000" height="689" loading="lazy"><figcaption>Where each roadmap item meets my repos.</figcaption></figure>
 
@@ -56,6 +58,6 @@ My [monthly security scan](https://rileytrottier.com/posts/running-my-own-apps/)
 
 MCP is the other half of my setup. My journal MCP server, pulled out of ReflectAI, uses it. Both standards now sit with the same group, and Anthropic says that, as with MCP, the skills project will put community input and open decision-making first.
 
-For now, nothing in my repos needs to change. The first thing that would is a versioned release of the spec.
+For now, nothing in my setup needs to change. But Agent Skills is a large part of how I and many others build with AI. And without proper government regulation (or even with it) new institutions, norms and controls will naturally emerge from Anthropic, OpenAI and the broader community. It's hard to stay on top of everything happening, but it's critical to stay on top of industry standards, and know who is setting them.
 
 *Views are my own and don't represent Workday.*
